@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multiple Choice</title><style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #232526, #0f2027);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 60px;
+    animation: fadeIn 1s;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 12px;
+    width: 220px;
+    border: none;
+    border-radius: 10px;
+    background: #00c6ff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #0072ff;
+}
+
+.correct {
+    color: #00ffcc;
+    animation: pop 0.4s;
+}
+
+.wrong {
+    color: #ff4d4d;
+    animation: shake 0.4s;
+}
+
+#explanation {
+    margin-top: 10px;
+    color: #ffd700;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes pop {
+    0% {transform: scale(0.8);}
+    100% {transform: scale(1);}
+}
+
+@keyframes shake {
+    0% {transform: translateX(-5px);}
+    50% {transform: translateX(5px);}
+    100% {transform: translateX(0);}
+}
+</style></head><body><h2>Multiple Choice</h2><div class="container">
+    <p id="question"></p><div id="options"></div>
+
+<p id="result"></p>
+<p id="explanation"></p>
+<p id="score"></p>
+
+</div><script>
+let questions = [
+    {
+        q: "She ____ to work every day.",
+        options: ["go", "goes", "going"],
+        answer: "goes",
+        exp: "For 'she', we add 's' → 'goes'."
+    },
+    {
+        q: "They ____ football now.",
+        options: ["play", "are playing", "plays"],
+        answer: "are playing",
+        exp: "Present continuous → 'are playing'."
+    },
+    {
+        q: "He ____ a car.",
+        options: ["have", "has", "having"],
+        answer: "has",
+        exp: "'He' uses 'has', not 'have'."
+    },
+    {
+        q: "I ____ English every day.",
+        options: ["study", "studies", "studying"],
+        answer: "study",
+        exp: "'I' uses base verb → 'study'."
+    },
+    {
+        q: "We ____ happy.",
+        options: ["is", "are", "am"],
+        answer: "are",
+        exp: "'We' uses 'are'."
+    }
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+    let q = questions[index];
+    document.getElementById("question").innerText = q.q;
+
+    let optionsHTML = "";
+    q.options.forEach(opt => {
+        optionsHTML += `<button onclick="check('${opt}')">${opt}</button>`;
+    });
+
+    document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function check(answer){
+    let result = document.getElementById("result");
+    let explanation = document.getElementById("explanation");
+
+    if(answer === questions[index].answer){
+        result.innerText = "Correct! 🎉";
+        result.className = "correct";
+        explanation.innerText = questions[index].exp;
+        score++;
+    } else {
+        result.innerText = "Wrong ❌";
+        result.className = "wrong";
+        explanation.innerText = "Correct answer: " + questions[index].answer + 
+                                " → " + questions[index].exp;
+    }
+
+    index++;
+
+    setTimeout(()=>{
+        if(index < questions.length){
+            loadQuestion();
+            result.innerText = "";
+            explanation.innerText = "";
+        } else {
+            document.getElementById("score").innerText = "Final Score: " + score + "/5";
+            localStorage.setItem("MCScore", score);
+
+            if(score >= 4){
+                result.innerText = "Excellent! You are doing great 🚀";
+            } else {
+                result.innerText = "Keep practicing, you are improving 💪";
+            }
+        }
+    }, 2000);
+}
+
+loadQuestion();
+</script></body>
+</html>

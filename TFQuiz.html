@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>True or False</title><style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 60px;
+}
+
+button {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #00c6ff;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #0072ff;
+}
+
+.correct { color: lightgreen; }
+.wrong { color: red; }
+</style></head><body><h2>True or False</h2><div class="container">
+    <p id="question"></p><button onclick="check(true)">True</button>
+<button onclick="check(false)">False</button>
+
+<p id="result"></p>
+<p id="score"></p>
+
+</div><script>
+let questions = [
+    {q: "People usually drink coffee in the morning.", a: true},
+    {q: "English has no grammar rules.", a: false},
+    {q: "Students use phones to study sometimes.", a: true},
+    {q: "Teachers never give homework.", a: false},
+    {q: "We use English to communicate globally.", a: true}
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+    document.getElementById("question").innerText = questions[index].q;
+}
+
+function check(answer){
+    let result = document.getElementById("result");
+
+    if(answer === questions[index].a){
+        result.innerText = "Correct! Well done 🎉";
+        result.className = "correct";
+        score++;
+    } else {
+        result.innerText = "Oops! Try again";
+        result.className = "wrong";
+    }
+
+    index++;
+
+    setTimeout(()=>{
+        if(index < questions.length){
+            loadQuestion();
+            result.innerText = "";
+        } else {
+            document.getElementById("score").innerText = "Final Score: " + score + "/5";
+            localStorage.setItem("TFScore", score);
+
+            if(score >= 4){
+                result.innerText = "Excellent! Keep going 💪";
+            } else {
+                result.innerText = "Good effort! Practice more 👍";
+            }
+        }
+    }, 1200);
+}
+
+loadQuestion();
+</script></body>
+</html>

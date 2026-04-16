@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>English Challenge | Futuristic</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Poppins', 'Arial', system-ui;
+    background: radial-gradient(ellipse at 30% 20%, #0a0f2a, #03050c);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Animated scanning line effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 255, 0.03) 50%, transparent 100%);
+    animation: scan 8s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* Main glass card */
+.glass-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(10, 20, 35, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 48px;
+    padding: 50px 40px;
+    margin: 30px;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 198, 255, 0.2);
+}
+
+/* TITLE - Neon futuristic */
+h1 {
+    font-size: 58px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00c6ff, #00ffcc, #00c6ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: neonPulse 2s ease-in-out infinite, gradientShift 3s linear infinite;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+@keyframes neonPulse {
+    0% { text-shadow: 0 0 5px #00c6ff; }
+    100% { text-shadow: 0 0 25px #00ffcc; }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* SUBTITLE */
+.tagline {
+    font-size: 18px;
+    color: #aaf0ff;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    background: rgba(0, 255, 255, 0.1);
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+}
+
+/* INPUT - Cyber style */
+.cyber-input {
+    padding: 14px 20px;
+    border-radius: 60px;
+    border: 2px solid #00c6ff;
+    background: rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+    width: 260px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.cyber-input:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff, 0 0 5px #00c6ff;
+    transform: scale(1.02);
+}
+
+.cyber-input::placeholder {
+    color: #88aaff;
+}
+
+/* BUTTONS - Sleek futuristic */
+.btn {
+    display: block;
+    width: 300px;
+    margin: 18px auto;
+    padding: 18px;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 60px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px #00c6ff;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 30px #00ffcc, 0 5px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(90deg, #00d4ff, #0088ff);
+}
+
+.btn:active {
+    transform: translateY(2px);
+}
+
+/* Start button special */
+.btn-start {
+    background: linear-gradient(90deg, #00ff88, #00c6ff);
+    box-shadow: 0 0 20px #00ff88;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.btn-start:hover {
+    box-shadow: 0 0 35px #00ffcc;
+}
+
+/* DISABLED BUTTON */
+.disabled {
+    background: linear-gradient(90deg, #555, #777);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: linear-gradient(90deg, #555, #777);
+}
+
+/* Quiz container */
+.quiz-container {
+    margin-top: 35px;
+}
+
+/* Divider effect */
+.divider {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, cyan, magenta, transparent);
+    margin: 20px auto;
+}
+
+/* Responsive */
+@media (max-width: 550px) {
+    .glass-card {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    .btn {
+        width: 260px;
+        padding: 14px;
+        font-size: 18px;
+    }
+    .cyber-input {
+        width: 220px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="glass-card">
+    <h1>✨ English Challenge ✨</h1>
+    <div class="tagline">⚡ Practice • Improve • Master ⚡</div>
+
+    <input type="text" id="username" class="cyber-input" placeholder="Enter your name">
+
+    <button class="btn btn-start" onclick="start()">🚀 Start Journey 🚀</button>
+
+    <div class="divider"></div>
+
+    <div class="quiz-container">
+        <button id="btn1" class="btn disabled" onclick="goTo('TFQuiz.html')">🎯 True or False</button>
+        <button id="btn2" class="btn disabled" onclick="goTo('GFQuiz.html')">📝 Gap Filling</button>
+        <button id="btn3" class="btn disabled" onclick="goTo('MacQuiz.html')">💡 Multiple Choice</button>
+    </div>
+    
+    <div class="divider"></div>
+    <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">◈ neural learning system online ◈</p>
+</div>
+
+<script>
+function start(){
+    let name = document.getElementById("username").value.trim();
+
+    if(name === ""){
+        alert("Please enter your name 😊");
+        return;
+    }
+
+    // Save name
+    localStorage.setItem("username", name);
+
+    // Enable buttons
+    document.getElementById("btn1").classList.remove("disabled");
+    document.getElementById("btn2").classList.remove("disabled");
+    document.getElementById("btn3").classList.remove("disabled");
+
+    // Welcome message
+    alert("✨ Welcome " + name + "! ✨\nChoose your challenge and level up! 🚀");
+}
+
+function goTo(page){
+    let username = localStorage.getItem("username");
+
+    if(!username){
+        alert("Please enter your name first 😊");
+        return;
+    }
+
+    window.location.href = page;
+}
+</script>
+
+</body>
+</html>

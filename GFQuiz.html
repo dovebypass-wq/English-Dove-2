@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gap Filling</title><style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #0f2027, #2c5364);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    margin-top: 60px;
+    animation: fadeIn 1s ease-in;
+}
+
+input {
+    padding: 12px;
+    margin: 15px;
+    border-radius: 8px;
+    border: none;
+    width: 200px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #00c6ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #0072ff;
+}
+
+.correct {
+    color: #00ffcc;
+    animation: pop 0.5s;
+}
+
+.wrong {
+    color: #ff4d4d;
+    animation: shake 0.4s;
+}
+
+#explanation {
+    margin-top: 10px;
+    color: #ffd700;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes pop {
+    0% {transform: scale(0.8);}
+    100% {transform: scale(1);}
+}
+
+@keyframes shake {
+    0% {transform: translateX(-5px);}
+    50% {transform: translateX(5px);}
+    100% {transform: translateX(0);}
+}
+</style></head><body><h2>Gap Filling</h2><div class="container">
+    <p id="question"></p>
+    <input type="text" id="answer" placeholder="Type your answer">
+    <br>
+    <button onclick="check()">Check</button><p id="result"></p>
+<p id="explanation"></p>
+<p id="score"></p>
+
+</div><script>
+let questions = [
+    {
+        q: "I ____ to school every day.",
+        a: "go",
+        exp: "We use 'go' because the subject is 'I'. In present simple, we say 'I go'."
+    },
+    {
+        q: "She ____ English very well.",
+        a: "speaks",
+        exp: "For 'she', we add 's' → 'speaks'. This is a rule in present simple."
+    },
+    {
+        q: "They ____ football on weekends.",
+        a: "play",
+        exp: "'They' uses base verb → 'play', not 'plays'."
+    },
+    {
+        q: "He ____ a teacher.",
+        a: "is",
+        exp: "'He' uses 'is' (not 'are' or 'am')."
+    },
+    {
+        q: "We ____ studying now.",
+        a: "are",
+        exp: "Present continuous → 'We are studying'."
+    }
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+    document.getElementById("question").innerText = questions[index].q;
+    document.getElementById("answer").value = "";
+}
+
+function check(){
+    let userAnswer = document.getElementById("answer").value.toLowerCase().trim();
+    let result = document.getElementById("result");
+    let explanation = document.getElementById("explanation");
+
+    if(userAnswer === questions[index].a){
+        result.innerText = "Correct! 🎉 Well done!";
+        result.className = "correct";
+        explanation.innerText = questions[index].exp;
+        score++;
+    } else {
+        result.innerText = "Wrong ❌";
+        result.className = "wrong";
+        explanation.innerText = "Correct answer: " + questions[index].a + 
+                                " → " + questions[index].exp;
+    }
+
+    index++;
+
+    setTimeout(()=>{
+        if(index < questions.length){
+            loadQuestion();
+            result.innerText = "";
+            explanation.innerText = "";
+        } else {
+            document.getElementById("score").innerText = "Final Score: " + score + "/5";
+            localStorage.setItem("GFScore", score);
+
+            if(score >= 4){
+                result.innerText = "Excellent! You are improving fast 🚀";
+            } else {
+                result.innerText = "Keep practicing. You are learning step by step 💪";
+            }
+        }
+    }, 2000);
+}
+
+loadQuestion();
+</script></body>
+</html>
