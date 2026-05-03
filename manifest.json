@@ -3,7 +3,7 @@
   "name": "English Dove",
   "short_name": "English Dove",
   "description": "descricao do app",
-  "start_url": "/",
+  "start_url": "/English-Dove-2/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
