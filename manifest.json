@@ -1,8 +1,8 @@
 {
-  "id": "main url",
-  "name": "XXX",
-  "short_name": "XXX",
-  "description": "XXX",
+  "id": "https://dovebypass-wq.github.io/English-Dove-2/",
+  "name": "English Dove",
+  "short_name": "English Dove",
+  "description": "descricao do app",
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
