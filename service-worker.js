@@ -1,9 +1,9 @@
 // service-worker.js — cache apenas do APP_SHELL
 const CACHE_NAME = 'app-pwa-v1.00'; // 🔴 aumente sempre que atualizar
 const APP_SHELL = [
-  '/',
-  '/index.html',
-  '/.well-known/assetlinks.json'
+  /English-Dove-2/',
+  '/English-Dove-2/index.html',
+  '/English-Dove-2/.well-known/assetlinks.json'
 ];
 
 // ✅ Instala e faz pré-cache do App Shell
