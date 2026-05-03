@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="manifest" href="/manifest.json">
 <meta charset="UTF-8">
 <title>English Challenge | Futuristic</title>
 <style>
@@ -261,6 +262,14 @@ function goTo(page){
     window.location.href = page;
 }
 </script>
-
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('SW registrado!', reg))
+                .catch(err => console.error('Erro:', err));
+        });
+    }
+</script>
 </body>
 </html>
